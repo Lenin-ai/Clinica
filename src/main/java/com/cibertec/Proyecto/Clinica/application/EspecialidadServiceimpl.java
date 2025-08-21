@@ -33,6 +33,12 @@ public class EspecialidadServiceimpl {
         }
 
         @Override
+        public Especialidad actualizar(Integer id, Especialidad especialidad) {
+            return especialidadRepository.actualizar(id, especialidad);
+        }
+
+
+        @Override
         public void eliminar(Integer id) {
             especialidadRepository.deleteById(id);
         }

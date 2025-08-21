@@ -8,6 +8,7 @@ public interface PacienteService {
     List<Paciente> listar();
     Paciente obtener(Integer id);
     Paciente agregar(Paciente reservacion);
+    Paciente actualizar(Paciente paciente);
     void eliminar(Integer id);
 
 }

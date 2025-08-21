@@ -42,7 +42,15 @@ public class EspecialidadController {
         }
     }
 
-    // ✅ Eliminar
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizar(@PathVariable Integer id, @RequestBody Especialidad especialidad) {
+        try {
+            return ResponseEntity.ok(especialidadService.actualizar(id, especialidad));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Integer id) {
         especialidadService.eliminar(id);

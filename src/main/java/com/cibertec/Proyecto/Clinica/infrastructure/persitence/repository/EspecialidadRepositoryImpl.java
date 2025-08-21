@@ -39,6 +39,17 @@ public class EspecialidadRepositoryImpl implements EspecialidadRepository {
                 .collect(Collectors.toList());
     }
 
+    public Especialidad actualizar(Integer id, Especialidad especialidad) {
+        int rows = especialidadRepositoryJpa.actualizarEspecialidad(id, especialidad.getNombre(), especialidad.getDescripcion());
+        if (rows == 0) {
+            throw new RuntimeException("Especialidad con ID " + id + " no encontrada");
+        }
+        // Vuelvo a consultar para devolver la versión actualizada
+        return especialidadRepositoryJpa.findById(id)
+                .map(especialidadMapper::toDomain)
+                .orElseThrow(() -> new RuntimeException("Especialidad con ID " + id + " no encontrada tras actualizar"));
+    }
+
     @Override
     public void deleteById(Integer id) {
         especialidadRepositoryJpa.deleteById(id);

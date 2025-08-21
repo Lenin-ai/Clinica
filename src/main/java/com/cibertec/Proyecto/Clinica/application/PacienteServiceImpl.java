@@ -1,5 +1,6 @@
 package com.cibertec.Proyecto.Clinica.application;
 
+import com.cibertec.Proyecto.Clinica.domain.model.Especialidad;
 import com.cibertec.Proyecto.Clinica.domain.model.Paciente;
 import com.cibertec.Proyecto.Clinica.domain.repository.PacienteRepository;
 import com.cibertec.Proyecto.Clinica.domain.service.PacienteService;
@@ -28,6 +29,11 @@ public class PacienteServiceImpl implements PacienteService {
     @Override
     public Paciente agregar(Paciente paciente) {
         return repository.save(paciente);
+    }
+
+    @Override
+    public Paciente actualizar(Paciente paciente) {
+        return repository.update(paciente);
     }
 
     @Override

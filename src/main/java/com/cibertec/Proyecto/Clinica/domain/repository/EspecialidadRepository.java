@@ -9,5 +9,6 @@ public interface EspecialidadRepository {
     Especialidad save(Especialidad especialidad);
     Optional<Especialidad> findById(Integer id);
     List<Especialidad> findAll();
+    Especialidad actualizar(Integer id, Especialidad especialidad);
     void deleteById(Integer id);
 }

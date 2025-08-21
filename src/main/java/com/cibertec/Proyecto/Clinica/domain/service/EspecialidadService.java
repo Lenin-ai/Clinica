@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EspecialidadService {
+    List<Especialidad> listar();
     Especialidad guardar(Especialidad especialidad);
     Especialidad obtenerPorId(Integer id);
-    List<Especialidad> listar();
+    Especialidad actualizar(Integer id, Especialidad especialidad);
     void eliminar(Integer id);
 }

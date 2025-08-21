@@ -32,6 +32,17 @@ public class PacienteController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizar(@PathVariable Integer id, @RequestBody Paciente paciente) {
+        try {
+            paciente.setId(id);
+            return ResponseEntity.ok(service.actualizar(paciente));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity <?> eliminar(@PathVariable Integer id){
         service.eliminar(id);
