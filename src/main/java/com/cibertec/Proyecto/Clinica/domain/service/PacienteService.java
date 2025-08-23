@@ -7,7 +7,7 @@ import java.util.List;
 public interface PacienteService {
     List<Paciente> listar();
     Paciente obtener(Integer id);
-    Paciente agregar(Paciente reservacion);
+    Paciente agregar(Paciente paciente);
     Paciente actualizar(Paciente paciente);
     void eliminar(Integer id);
 

@@ -13,7 +13,7 @@ public interface EspecialidadMapper {
     Especialidad toDomain(EspecialidadEntity entity);
 
     @Mapping(target = "id", source = "id")
-    @Mapping(target = "nombre", source = "nombre")
-    @Mapping(target = "descripcion", source = "descripcion")
+    @Mapping(target = "nombre", ignore = true)       // <-- ignoramos para que no intente poner null
+    @Mapping(target = "descripcion", ignore = true)  // <-- igual aquí
     EspecialidadEntity toEntity(Especialidad model);
 }

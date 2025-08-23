@@ -2,8 +2,6 @@ package com.cibertec.Proyecto.Clinica.presentation.controller;
 
 import com.cibertec.Proyecto.Clinica.domain.model.Paciente;
 import com.cibertec.Proyecto.Clinica.domain.service.PacienteService;
-import com.cibertec.Proyecto.Clinica.infrastructure.persitence.entity.PacienteEntity;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,16 +9,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pacientes")
-
 public class PacienteController {
     private final PacienteService service;
 
-    public PacienteController(PacienteService service) {this.service = service;}
+    public PacienteController(PacienteService service) {
+        this.service = service;}
 
     @GetMapping
     public List<Paciente> listar() {
         return service.listar();
     }
+
     @GetMapping("/{id}")
     public Paciente obtener(@PathVariable Integer id) {return service.obtener(id);}
 
