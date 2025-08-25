@@ -28,3 +28,9 @@ logging:
     org.hibernate.orm.jdbc.bind: TRACE         # Muestra los valores que se envian a los parametros ?
     org.hibernate.orm.jdbc.extract: TRACE    # Muestra los valores que se extraen desde la BD
     org.hibernate.type.descriptor.sql: TRACE   # Para ver mas detalles de tipos
+
+security:
+    jwt:
+      secret: TDSZydxbpLTzBiSyAdfK6qzd8nBt9WeOFBO-Pi7NO5X1IWgLA594XmYEj99lEK_ZEyKKs2dkmIe8g1dFBYuQJg
+      access-token-expiration: 900000  # 15 minutos en milisegundos
+      refresh-token-expiration: 900000  # 15 minutos en milisegundos
