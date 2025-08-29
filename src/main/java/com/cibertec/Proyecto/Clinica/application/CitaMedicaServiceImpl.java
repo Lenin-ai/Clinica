@@ -1,9 +1,12 @@
 package com.cibertec.Proyecto.Clinica.application;
 
+import com.cibertec.Proyecto.Clinica.application.dto.CitaMedicaDTO;
 import com.cibertec.Proyecto.Clinica.domain.model.CitaMedica;
 import com.cibertec.Proyecto.Clinica.domain.repository.CitaMedicaRepository;
 import com.cibertec.Proyecto.Clinica.domain.service.CitaMedicaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -29,10 +32,10 @@ public class CitaMedicaServiceImpl implements CitaMedicaService {
         return citaMedicaRepository.findById(id);
     }
 
-    @Override
+   /* @Override
     public List<CitaMedica> listarCitas() {
         return citaMedicaRepository.findAll();
-    }
+    }*/
 
     @Override
     public void eliminarCita(Integer id) {
@@ -46,5 +49,10 @@ public class CitaMedicaServiceImpl implements CitaMedicaService {
         citaMedica.setFechaActualizacion(LocalDateTime.now());
         citaMedica.setUsuarioActualizacion("admin_update");
         return citaMedicaRepository.update(citaMedica);
+    }
+
+    @Override
+    public Page<CitaMedicaDTO> listarCitasPaginadas(Pageable pageable) {
+        return citaMedicaRepository.findAllPaginado(pageable);
     }
 }

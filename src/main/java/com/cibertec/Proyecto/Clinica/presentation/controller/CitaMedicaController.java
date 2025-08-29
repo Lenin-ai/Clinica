@@ -1,10 +1,12 @@
 package com.cibertec.Proyecto.Clinica.presentation.controller;
+import com.cibertec.Proyecto.Clinica.application.dto.CitaMedicaDTO;
 import com.cibertec.Proyecto.Clinica.domain.model.CitaMedica;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/citas")
@@ -19,11 +21,11 @@ public class CitaMedicaController {
         return ResponseEntity.ok(citaMedicaService.registrarCita(citaMedica));
     }
 
-    // 🔹 Obtener todas las citas médicas
-    @GetMapping
-    public ResponseEntity<List<CitaMedica>> listarCitas() {
-        return ResponseEntity.ok(citaMedicaService.listarCitas());
-    }
+   // 🔹 Obtener todas las citas médicas
+   @GetMapping
+   public Page<CitaMedicaDTO> listarCitas(Pageable pageable) {
+       return citaMedicaService.listarCitasPaginadas(pageable);
+   }
 
     // 🔹 Buscar cita médica por ID
     @GetMapping("/{id}")
@@ -46,4 +48,5 @@ public class CitaMedicaController {
         citaMedicaService.eliminarCita(id);
         return ResponseEntity.ok("Cita eliminada");
     }
+
 }

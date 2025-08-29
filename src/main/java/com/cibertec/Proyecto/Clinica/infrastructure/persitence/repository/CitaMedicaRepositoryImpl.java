@@ -1,11 +1,14 @@
 package com.cibertec.Proyecto.Clinica.infrastructure.persitence.repository;
 
+import com.cibertec.Proyecto.Clinica.application.dto.CitaMedicaDTO;
 import com.cibertec.Proyecto.Clinica.domain.model.CitaMedica;
 import com.cibertec.Proyecto.Clinica.domain.repository.CitaMedicaRepository;
 import com.cibertec.Proyecto.Clinica.infrastructure.persitence.entity.CitaMedicaEntity;
 import com.cibertec.Proyecto.Clinica.infrastructure.persitence.jpa.CitaMedicaRepositoryJpa;
 import com.cibertec.Proyecto.Clinica.infrastructure.persitence.mapper.CitaMedicaMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +55,10 @@ public class CitaMedicaRepositoryImpl implements CitaMedicaRepository {
         }
         CitaMedicaEntity entity = citaMedicaMapper.toEntity(citaMedica);
         return citaMedicaMapper.toDomain(citaMedicaRepositoryJpa.save(entity));
+    }
+
+    @Override
+    public Page<CitaMedicaDTO> findAllPaginado(Pageable pageable) {
+        return citaMedicaRepositoryJpa.findAllCitasConNombres(pageable);
     }
 }
