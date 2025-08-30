@@ -2,6 +2,8 @@ package com.cibertec.Proyecto.Clinica.infrastructure.persitence.jpa;
 
 import com.cibertec.Proyecto.Clinica.domain.model.Paciente;
 import com.cibertec.Proyecto.Clinica.infrastructure.persitence.entity.PacienteEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -31,4 +33,11 @@ public interface PacienteRepositoryJpa extends JpaRepository<PacienteEntity, Int
             @Param("email") String email,
             @Param("usuario") String usuario
     );
+
+    @Query("""
+        SELECT p 
+        FROM PacienteEntity p
+        ORDER BY p.apellidos ASC
+    """)
+        Page<PacienteEntity> findAllPaginado(Pageable pageable);
 }

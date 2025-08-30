@@ -6,6 +6,8 @@ import com.cibertec.Proyecto.Clinica.infrastructure.persitence.entity.Especialid
 import com.cibertec.Proyecto.Clinica.infrastructure.persitence.jpa.EspecialidadRepositoryJpa;
 import com.cibertec.Proyecto.Clinica.infrastructure.persitence.mapper.EspecialidadMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -53,5 +55,11 @@ public class EspecialidadRepositoryImpl implements EspecialidadRepository {
     @Override
     public void deleteById(Integer id) {
         especialidadRepositoryJpa.deleteById(id);
+    }
+
+    @Override
+    public Page<Especialidad> findAllPaginado(int page, int size) {
+        return especialidadRepositoryJpa.findAllPaginado(PageRequest.of(page, size))
+                .map(especialidadMapper::toDomain);
     }
 }

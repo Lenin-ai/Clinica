@@ -2,6 +2,7 @@ package com.cibertec.Proyecto.Clinica.presentation.controller;
 
 import com.cibertec.Proyecto.Clinica.domain.model.Medico;
 import com.cibertec.Proyecto.Clinica.domain.service.MedicoService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +16,19 @@ public class MedicoController {
     public MedicoController(MedicoService medicoService) {
         this.medicoService = medicoService;
     }
+    @GetMapping()
+    public Page<Medico> listarPaginado(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        return medicoService.listarPaginado(page, size);
+    }
+
     // Listar todos
-    @GetMapping
+ /*   @GetMapping
     public List<Medico> listar() {
         return medicoService.listar();
-    }
+    }*/
 
     // Obtener por ID
     @GetMapping("/{id}")
@@ -51,4 +60,6 @@ public class MedicoController {
         medicoService.eliminar(id);
         return ResponseEntity.ok("Médico eliminado correctamente");
     }
+
+
 }

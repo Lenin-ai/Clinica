@@ -4,6 +4,9 @@ import com.cibertec.Proyecto.Clinica.domain.repository.MedicoRepository;
 import com.cibertec.Proyecto.Clinica.domain.service.MedicoService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -42,4 +45,12 @@ public class MedicoServiceImpl implements MedicoService {
                 .orElseThrow(() -> new RuntimeException("Medico no encontrado con id: " + id));
         medicoRepository.deleteById(id);
     }
+
+    @Override
+    public Page<Medico> listarPaginado(int page, int size) {
+        return medicoRepository.listarPaginado(PageRequest.of(page, size, Sort.by("apellidos").ascending()));
+    }
+
+
+
 }

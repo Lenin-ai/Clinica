@@ -5,6 +5,8 @@ import com.cibertec.Proyecto.Clinica.domain.repository.PacienteRepository;
 import com.cibertec.Proyecto.Clinica.infrastructure.persitence.jpa.PacienteRepositoryJpa;
 import com.cibertec.Proyecto.Clinica.infrastructure.persitence.mapper.PacienteMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,5 +69,11 @@ public class PacienteRepositoryImpl implements PacienteRepository {
     @Override
     public void deleteById(Integer id) {
         pacienteRepositoryJpa.deleteById(id);
+    }
+
+    @Override
+    public Page<Paciente> findAllPaginado(Pageable pageable) {
+        return pacienteRepositoryJpa.findAllPaginado(pageable)
+                .map(pacienteMapper::toDomain);
     }
 }

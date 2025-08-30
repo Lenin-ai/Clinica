@@ -4,6 +4,8 @@ import com.cibertec.Proyecto.Clinica.domain.model.Especialidad;
 import com.cibertec.Proyecto.Clinica.domain.model.Paciente;
 import com.cibertec.Proyecto.Clinica.domain.repository.PacienteRepository;
 import com.cibertec.Proyecto.Clinica.domain.service.PacienteService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +43,10 @@ public class PacienteServiceImpl implements PacienteService {
         Paciente paciente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Paciente no encontrado con id: " + id));
         repository.deleteById(id);
+    }
+
+    @Override
+    public Page<Paciente> listarPaginado(int page, int size) {
+        return repository.findAllPaginado(PageRequest.of(page, size));
     }
 }

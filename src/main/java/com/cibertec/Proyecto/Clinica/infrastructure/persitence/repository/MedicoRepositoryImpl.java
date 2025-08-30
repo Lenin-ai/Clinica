@@ -6,6 +6,8 @@ import com.cibertec.Proyecto.Clinica.infrastructure.persitence.entity.MedicoEnti
 import com.cibertec.Proyecto.Clinica.infrastructure.persitence.jpa.MedicoRepositoryJpa;
 import com.cibertec.Proyecto.Clinica.infrastructure.persitence.mapper.MedicoMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +54,11 @@ public class MedicoRepositoryImpl implements MedicoRepository {
         }
         MedicoEntity medicoEntity = medicoMapper.toEntity(medico);
         return medicoMapper.toDomain(medicoRepositoryJpa.save(medicoEntity));
+    }
+
+    @Override
+    public Page<Medico> listarPaginado(Pageable pageable) {
+        return medicoRepositoryJpa.findAllMedicosConEspecialidad(pageable)
+                .map(medicoMapper::toDomain);
     }
 }

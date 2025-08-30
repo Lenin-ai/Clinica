@@ -15,17 +15,19 @@ public class CitaMedicaDTO {
     private LocalTime hora;
     private String pacienteNombreCompleto;
     private String medicoNombreCompleto;
+    private String especialidad;
     private String motivo;
     private EstadoCita estado;
 
     public CitaMedicaDTO(Integer id, LocalDate fecha, LocalTime hora,
                          String pacienteNombreCompleto, String medicoNombreCompleto,
-                         String motivo, EstadoCita estado) {
+                         String especialidad, String motivo, EstadoCita estado) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.pacienteNombreCompleto = pacienteNombreCompleto;
         this.medicoNombreCompleto = medicoNombreCompleto;
+        this.especialidad = especialidad;
         this.motivo = motivo;
         this.estado = estado;
     }

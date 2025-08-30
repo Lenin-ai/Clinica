@@ -4,6 +4,7 @@ import com.cibertec.Proyecto.Clinica.domain.model.Especialidad;
 import com.cibertec.Proyecto.Clinica.domain.repository.EspecialidadRepository;
 import com.cibertec.Proyecto.Clinica.domain.service.EspecialidadService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,6 +42,11 @@ public class EspecialidadServiceimpl {
         @Override
         public void eliminar(Integer id) {
             especialidadRepository.deleteById(id);
+        }
+
+        @Override
+        public Page<Especialidad> listarPaginado(int page, int size) {
+            return especialidadRepository.findAllPaginado(page, size);
         }
     }
 }

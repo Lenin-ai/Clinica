@@ -1,6 +1,8 @@
 package com.cibertec.Proyecto.Clinica.domain.repository;
 
 import com.cibertec.Proyecto.Clinica.domain.model.Medico;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -13,4 +15,5 @@ public interface MedicoRepository {
     void deleteById(Integer id);
     @Transactional
     Medico update(Medico medico);
+    Page<Medico> listarPaginado(Pageable pageable);
 }

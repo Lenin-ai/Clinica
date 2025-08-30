@@ -2,6 +2,7 @@ package com.cibertec.Proyecto.Clinica.presentation.controller;
 
 import com.cibertec.Proyecto.Clinica.domain.model.Paciente;
 import com.cibertec.Proyecto.Clinica.domain.service.PacienteService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +17,16 @@ public class PacienteController {
         this.service = service;}
 
     @GetMapping
+    public Page<Paciente> listarPaginado(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return service.listarPaginado(page, size);
+    }
+
+ /*   @GetMapping
     public List<Paciente> listar() {
         return service.listar();
-    }
+    }*/
 
     @GetMapping("/{id}")
     public Paciente obtener(@PathVariable Integer id) {return service.obtener(id);}

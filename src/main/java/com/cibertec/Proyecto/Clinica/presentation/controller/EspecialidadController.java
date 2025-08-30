@@ -2,6 +2,7 @@ package com.cibertec.Proyecto.Clinica.presentation.controller;
 
 import com.cibertec.Proyecto.Clinica.domain.model.Especialidad;
 import com.cibertec.Proyecto.Clinica.domain.service.EspecialidadService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,13 @@ public class EspecialidadController {
 
     // ✅ Listar todas
     @GetMapping
-    public ResponseEntity<List<Especialidad>> listar() {
-        return ResponseEntity.ok(especialidadService.listar());
+    public ResponseEntity<Page<Especialidad>> listarPaginado(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(especialidadService.listarPaginado(page, size));
     }
 
-    // ✅ Obtener por ID
+    // ✅ Obtener por ID 
     @GetMapping("/{id}")
     public ResponseEntity<Especialidad> obtener(@PathVariable Integer id) {
         Especialidad especialidad = especialidadService.obtenerPorId(id);
