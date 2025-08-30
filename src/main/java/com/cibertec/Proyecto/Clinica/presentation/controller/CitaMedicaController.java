@@ -40,3 +40,13 @@ public class CitaMedicaController {
     public ResponseEntity<CitaMedica> actualizarCita(@PathVariable Integer id, @RequestBody CitaMedica citaMedica) {
         citaMedica.setId(id); // Aseguramos que actualice la correcta
         return ResponseEntity.ok(citaMedicaService.actualizarCita(citaMedica));
+    }
+
+    // 🔹 Eliminar cita médica
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarCita(@PathVariable Integer id) {
+        citaMedicaService.eliminarCita(id);
+        return ResponseEntity.ok("Cita eliminada");
+    }
+
+}
