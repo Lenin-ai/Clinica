@@ -14,6 +14,7 @@ public interface CitaMedicaRepositoryJpa extends JpaRepository<CitaMedicaEntity,
     @Query(
             value = "SELECT new com.cibertec.Proyecto.Clinica.application.dto.CitaMedicaDTO(" +
                     "c.id, c.fecha, c.hora, " +
+                    "p.id, m.id, " +
                     "CONCAT(p.apellidos, ', ', p.nombres), " +
                     "CONCAT(m.apellidos, ', ', m.nombres), " +
                     "m.especialidad.nombre, " +
@@ -21,7 +22,7 @@ public interface CitaMedicaRepositoryJpa extends JpaRepository<CitaMedicaEntity,
                     "FROM CitaMedicaEntity c " +
                     "JOIN c.paciente p " +
                     "JOIN c.medico m " +
-                    "ORDER BY c.id DESC ",
+                    "ORDER BY c.id DESC",
             countQuery = "SELECT COUNT(c) FROM CitaMedicaEntity c"
     )
     Page<CitaMedicaDTO> findAllCitasConNombres(Pageable pageable);

@@ -44,9 +44,9 @@ public class CitaMedicaController {
 
     // 🔹 Eliminar cita médica
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarCita(@PathVariable Integer id) {
+    public ResponseEntity<Void> eliminarCita(@PathVariable Integer id) {
         citaMedicaService.eliminarCita(id);
-        return ResponseEntity.ok("Cita eliminada");
+        return ResponseEntity.noContent().build();
     }
 
 }
