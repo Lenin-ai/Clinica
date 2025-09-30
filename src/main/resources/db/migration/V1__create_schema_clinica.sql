@@ -1,6 +1,3 @@
-DROP DATABASE IF EXISTS clinica;
-CREATE DATABASE clinica;
-USE clinica;
 
 -- ===============================
 -- TABLA PACIENTE
@@ -202,18 +199,8 @@ CREATE TABLE ingreso_medicamento (
 CREATE INDEX idx_paciente_dni ON paciente(dni);
 CREATE INDEX idx_medico_cmp ON medico(cmp);
 CREATE INDEX idx_proveedor_ruc ON proveedor(ruc);
-CREATE INDEX idx_usuario_nombre ON usuario(nombreUsuario);
+CREATE INDEX idx_usuario_nombre ON usuario(username);
 
-USE clinica;
-
-
--- ===========================================
--- 			INSERT DE REGISTROS DE EJEMPLO
--- ===========================================
-
--- ===============================
--- ESPECIALIDADES
--- ===============================
 INSERT INTO especialidad (nombre, descripcion, usuario_creacion)
 VALUES
     ('Cardiología', 'Especialidad del corazón', 'admin'),
@@ -359,6 +346,4 @@ INSERT INTO ingreso_medicamento (idMedicamento, idProveedor, fechaIngreso, canti
 VALUES
     (1, 1, '2025-08-01', 100, 0.30, 'admin'),
     (2, 2, '2025-08-05', 50, 0.80, 'admin');
-
-
 

@@ -92,10 +92,24 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.error</groupId>
-			<artifactId>spring-error-handler</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.error</groupId>-->
+<!--			<artifactId>spring-error-handler</artifactId>-->
+<!--			<version>0.0.1-SNAPSHOT</version>-->
+<!--		</dependency>-->
 	</dependencies>
 
 	<build>
