@@ -1,26 +1,7 @@
 services:
-  mysql-clinica:
-    image: mysql:8
-    ports:
-      - "3307:3306"
-    volumes:
-      - clinica_data:/var/lib/mysql
-    networks:
-      - clinica-net
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: clinica
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      interval: 10s
-      timeout: 5s
-      retries: 10
   clinica:
     build: .
     container_name: clinica
-    depends_on:
-      mysql-clinica:
-          condition: service_healthy
     ports:
       - "8080:8080"
     networks:
@@ -30,9 +11,6 @@ services:
       - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
       - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
       - JWT_SECRET=${JWT_SECRET}
-
-volumes:
-  clinica_data:
 networks:
   clinica-net:
     driver: bridge
