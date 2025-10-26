@@ -12,8 +12,8 @@ import org.springframework.http.HttpHeaders;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "API AUTH",
-                description = "API for the management and authentication of users with Keycloak",
+                title = "API ",
+                description = "API clinica",
                 version = "1.0.0",
                 contact = @Contact(
                         name = "Lenin Laura Garcia",
@@ -29,10 +29,6 @@ import org.springframework.http.HttpHeaders;
                 @Server(
                         description = "DEV SERVER",
                         url = "http://localhost:8080/"
-                ),
-                @Server(
-                        description = "DEPLOY SERVER",
-                        url = "http://leninov/"
                 )
         }
         ,
