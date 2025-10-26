@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,11 +49,21 @@ public class MedicoPersistenceAdapterImpl implements MedicoPersistence {
     @Transactional
     @Override
     public Medico update(Medico medico) {
-        if (!medicoRepositoryJpa.existsById(medico.getId())) {
-            throw new RuntimeException("Medico no encontrado");
+        MedicoEntity existente = medicoRepositoryJpa.findById(medico.getId())
+                .orElseThrow(() -> new RuntimeException("Médico no encontrado con id " + medico.getId()));
+
+        existente.setNombres(medico.getNombres());
+        existente.setApellidos(medico.getApellidos());
+        existente.setCmp(medico.getCmp());
+        if (medico.getEspecialidad() != null) {
+            existente.setEspecialidad(medicoMapper.toEntity(medico).getEspecialidad());
         }
-        MedicoEntity medicoEntity = medicoMapper.toEntity(medico);
-        return medicoMapper.toDomain(medicoRepositoryJpa.save(medicoEntity));
+        existente.setUsuarioActualizacion("admin");
+        existente.setFechaActualizacion(LocalDateTime.now());
+
+        MedicoEntity actualizado = medicoRepositoryJpa.save(existente);
+
+        return medicoMapper.toDomain(actualizado);
     }
 
     @Override

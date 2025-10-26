@@ -58,7 +58,6 @@ public class PacientePersistenceAdapterImpl implements PacientePersistence {
                 paciente.getEmail(),
                 "admin" //  pasar el usuario logueado
         );
-
         if (updated == 0) {
             throw new RuntimeException("Paciente con ID " + paciente.getId() + " no encontrado");
         }

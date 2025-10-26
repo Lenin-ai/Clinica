@@ -43,6 +43,5 @@ public class PacienteEntity {
     @Column(name = "usuario_actualizacion")
     private String usuarioActualizacion;
 
-    // Getters y setters
 }
 

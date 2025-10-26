@@ -3,6 +3,8 @@ package com.cibertec.Proyecto.Clinica.Appointment.Infrastructure.adapters.in.res
 import com.cibertec.Proyecto.Clinica.Appointment.domain.enums.EstadoCita;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,7 +22,8 @@ public class CitaMedicaDTO {
     private String especialidad;
     private String motivo;
     private EstadoCita estado;
-
+    public CitaMedicaDTO() {
+    }
     public CitaMedicaDTO(Integer id, LocalDate fecha, LocalTime hora,
                          Integer idPaciente, Integer idMedico, String pacienteNombreCompleto, String medicoNombreCompleto,
                          String especialidad, String motivo, EstadoCita estado) {

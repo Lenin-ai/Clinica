@@ -23,7 +23,7 @@ public class EspecialidadServiceimpl implements EspecialidadServicePort{
         @Override
         public Especialidad obtenerPorId(Integer id) {
             return especialidadPersistence.findById(id)
-                    .orElseThrow(()-> new RuntimeException("Paciente no Encontrado"));
+                    .orElseThrow(()-> new RuntimeException("Especialidad no Encontrado"));
         }
 
         @Override
