@@ -50,8 +50,8 @@ JWT_SECRET=TDSZydxbpLTzBiSyAdfK6qzd8nBt9WeOFBO-Pi7NO5X1IWgLA594XmYEj99lEK_ZEyKKs
 
 1. **Clona el repositorio:**
    ```bash
-   git clone https://github.com/usuario/clinica-backend.git
-   cd clinica-backend
+   git clone https://github.com/Lenin-ai/Clinica.git
+   cd Clinica
    ```
 
 2. **Construye y levanta los contenedores:**
